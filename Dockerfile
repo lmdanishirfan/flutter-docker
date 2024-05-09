@@ -26,8 +26,12 @@ RUN mkdir -p $ANDROID_SDK_ROOT && \
     unzip -d cmdline-tools sdk-tools-linux.zip && \
     rm sdk-tools-linux.zip
 
+
+RUN ls -l $ANDROID_SDK_ROOT/cmdline-tools/latest/bin
+
 # Set permissions and ensure sdkmanager is executable
 RUN chmod +x $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager
+
 # Set permissions and ensure sdkmanager is executable
 RUN chmod +x $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager
 
