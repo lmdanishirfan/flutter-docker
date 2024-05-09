@@ -15,7 +15,11 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        env:
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
@@ -23,6 +27,4 @@ jobs:
           file: Dockerfile
           push: true
           tags: lbdanish/flutter-linux:latest
-        env:
-          DOCKER_USERNAME: ${{ secrets.USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.PASSWORD }}
+
