@@ -23,9 +23,11 @@ ENV PATH="$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/pla
 RUN mkdir -p $ANDROID_SDK_ROOT && \
     cd $ANDROID_SDK_ROOT && \
     curl -o sdk-tools-linux.zip https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip && \
-    unzip sdk-tools-linux.zip -d cmdline-tools && \
+    unzip -d cmdline-tools sdk-tools-linux.zip && \
     rm sdk-tools-linux.zip
 
+# Set permissions and ensure sdkmanager is executable
+RUN chmod +x $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager
 # Set permissions and ensure sdkmanager is executable
 RUN chmod +x $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager
 
