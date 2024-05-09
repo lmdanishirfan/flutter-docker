@@ -3,7 +3,7 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build-and-push:
@@ -20,9 +20,9 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./path/to/Dockerfile
+          file: Dockerfile
           push: true
-          tags: <username>/<repository_name>:latest
+          tags: lbdanish/flutter-linux:latest
         env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_USERNAME: ${{ secrets.USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.PASSWORD }}
