@@ -14,6 +14,22 @@ RUN git clone --depth 1 --branch 3.16.9 https://github.com/flutter/flutter.git /
 
 # Environment variable for flutter
 ENV PATH="$PATH:/opt/flutter/bin"
+ENV ANDROID_SDK_ROOT=/opt/android-sdk
+ENV PATH="$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools/bin"
+
+# Install Android SDK
+RUN mkdir -p $ANDROID_SDK_ROOT && \
+    cd $ANDROID_SDK_ROOT && \
+    curl -o sdk-tools-linux.zip https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip && \
+    unzip sdk-tools-linux.zip && \
+    rm sdk-tools-linux.zip
+
+# Accept Android SDK licenses
+RUN yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
+
+# Install required Android SDK components
+RUN $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
+
 
 RUN flutter doctor
 
