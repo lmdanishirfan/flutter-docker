@@ -26,6 +26,9 @@ RUN mkdir -p $ANDROID_SDK_ROOT && \
     unzip sdk-tools-linux.zip && \
     rm sdk-tools-linux.zip
 
+# Check Permissions
+RUN chmod +x $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager
+
 # Accept Android SDK licenses
 RUN yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
 
