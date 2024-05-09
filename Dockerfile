@@ -1,6 +1,7 @@
 # Base image with minimal dependencies
 FROM ubuntu:20.04
-
+# Set DEBIAN_FRONTEND to noninteractive to avoid interactive prompts during package installation
+ENV DEBIAN_FRONTEND=noninteractive
 # Update package lists
 RUN apt-get update
 
