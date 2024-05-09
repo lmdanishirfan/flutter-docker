@@ -22,7 +22,7 @@ ENV PATH="$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/pla
 # Install Android SDK
 RUN mkdir -p $ANDROID_SDK_ROOT && \
     cd $ANDROID_SDK_ROOT && \
-    curl -o sdk-tools-linux.zip https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip && \
+    curl -o sdk-tools-linux.zip https://dl.google.com/android/repository/commandlinetools-linux-latest.zip && \
     unzip -d cmdline-tools sdk-tools-linux.zip && \
     rm sdk-tools-linux.zip
 
