@@ -30,8 +30,7 @@ RUN wget --quiet --output-document=sdk-tools.zip \
         "https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}_latest.zip"
 
 
-# Print the contents of the bin directory
-RUN ls -l $ANDROID_SDK_ROOT/cmdline-tools/latest/bin
+
 
 # Create necessary directory structure for the Android SDK
 RUN mkdir -p "$ANDROID_HOME" && \
