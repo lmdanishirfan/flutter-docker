@@ -41,7 +41,7 @@ RUN yes | $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools/bin/sdkmanager --license
 RUN ls -l $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools/bin
 
 # Install required Android SDK components
-RUN $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
+RUN $ANDROID_SDK_ROOT/cmdline-tools/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
 
 
 RUN flutter doctor
