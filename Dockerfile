@@ -26,12 +26,20 @@ ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 ENV PATH="$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools/bin"
 
 # Install Android SDK
-RUN mkdir -p $ANDROID_SDK_ROOT/cmdline-tools/latest 
-RUN cd $ANDROID_SDK_ROOT/cmdline-tools/latest
-RUN curl -o sdk-tools-linux.zip "https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}_latest.zip"
-RUN unzip sdk-tools-linux.zip
-RUN ls -l
-RUN rm sdk-tools-linux.zip
+RUN mkdir -p $ANDROID_SDK_ROOT/cmdline-tools/latest && \
+    cd $ANDROID_SDK_ROOT/cmdline-tools/latest && \
+    wget --quiet --output-document=sdk-tools.zip \
+        "https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}_latest.zip" && \
+    unzip -q sdk-tools.zip
+
+# Create necessary directory structure for the Android SDK
+RUN mkdir -p "$ANDROID_HOME" && \
+    unzip -q sdk-tools.zip -d "$ANDROID_HOME" && \
+    cd "$ANDROID_HOME" && \
+    mv cmdline-tools latest && \
+    mkdir cmdline-tools && \
+    mv latest cmdline-tools && \
+    rm sdk-tools.zip
 
 
 # Print the contents of the bin directory
