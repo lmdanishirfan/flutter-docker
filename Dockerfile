@@ -6,12 +6,12 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 # "11076708" as of 2024/03/04
-ENV ANDROID_SDK_TOOLS_VERSION=">=30.0.0"
+ENV ANDROID_SDK_TOOLS_VERSION="11076708"
 # Update package lists
 RUN apt-get update
 
 # Install dependencies
-RUN apt-get install -y curl git unzip zip openjdk-11-jdk
+RUN apt-get install -y curl git unzip zip openjdk-17-jdk
 
 # Define Flutter version and download URL (replace with desired version)
 ENV FLUTTER_VERSION=3.16.9
