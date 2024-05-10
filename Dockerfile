@@ -7,6 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # "11076708" as of 2024/03/04
 ENV ANDROID_SDK_TOOLS_VERSION="11076708"
+ENV NDK_VERSION="26.2.11394342"
 # Update package lists
 RUN apt-get update
 
@@ -52,16 +53,15 @@ RUN yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
 # Install required Android SDK components
 RUN $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
 
+# Install Android NDK
+RUN wget --quiet --output-document=android-ndk.zip \
+        "https://dl.google.com/android/repository/android-ndk-${NDK_VERSION}-linux-x86_64.zip" && \
+    unzip -q android-ndk.zip -d /opt && \
+    rm -rf android-ndk.zip
 
-# Download latest Android Studio version programmatically
-RUN ANDROID_STUDIO_DOWNLOAD_URL=$(curl -s "https://developer.android.com/studio") && \
-    wget --quiet --output-document=android-studio.tar.gz "$ANDROID_STUDIO_DOWNLOAD_URL" && \
-    tar -xf android-studio.tar.gz -C /opt/ && \
-    rm android-studio.tar.gz
-
-# Add Android Studio binaries to PATH
-ENV PATH="$PATH:/opt/android-studio/bin"
-
+# Set environment variables for NDK
+ENV ANDROID_NDK_HOME=/opt/android-ndk-${NDK_VERSION}
+ENV PATH="$PATH:$ANDROID_NDK_HOME"
 
 RUN flutter doctor
 
