@@ -54,7 +54,7 @@ RUN $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" "plat
 
 
 # Download latest Android Studio version programmatically
-RUN ANDROID_STUDIO_DOWNLOAD_URL=$(curl -s "https://developer.android.com/studio" | grep -oP 'https://redirector.gvt1.com/edgedl/android/studio/ide-zips/.+?/android-studio-[0-9.]+-linux.tar.gz' | head -n 1) && \
+RUN ANDROID_STUDIO_DOWNLOAD_URL=$(curl -s "https://developer.android.com/studio") && \
     wget --quiet --output-document=android-studio.tar.gz "$ANDROID_STUDIO_DOWNLOAD_URL" && \
     tar -xf android-studio.tar.gz -C /opt/ && \
     rm android-studio.tar.gz
