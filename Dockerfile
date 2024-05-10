@@ -26,11 +26,8 @@ ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 ENV PATH="$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools/bin"
 
 # Install Android SDK
-RUN mkdir -p $ANDROID_SDK_ROOT/cmdline-tools/latest && \
-    cd $ANDROID_SDK_ROOT/cmdline-tools/latest && \
-    wget --quiet --output-document=sdk-tools.zip \
-        "https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}_latest.zip" && \
-        unzip -q sdk-tools.zip
+RUN wget --quiet --output-document=sdk-tools.zip \
+        "https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}_latest.zip"
 
 
 # Print the contents of the bin directory
