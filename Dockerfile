@@ -38,8 +38,7 @@ RUN mkdir -p "$ANDROID_HOME" && \
     cd "$ANDROID_HOME" && \
     mv cmdline-tools latest && \
     mkdir cmdline-tools && \
-    mv latest cmdline-tools && \
-    rm sdk-tools.zip
+    mv latest cmdline-tools
 
 
 # Print the contents of the bin directory
