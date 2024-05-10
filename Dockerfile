@@ -1,3 +1,7 @@
+# "11076708" as of 2024/03/04
+ARG ANDROID_SDK_TOOLS_TAGGED="latest"
+ARG ANDROID_SDK_TOOLS_VERSION="11076708"
+
 # Base image with minimal dependencies
 FROM ubuntu:20.04
 # Set DEBIAN_FRONTEND to noninteractive to avoid interactive prompts during package installation
@@ -22,7 +26,7 @@ ENV PATH="$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/pla
 # Install Android SDK
 RUN mkdir -p $ANDROID_SDK_ROOT && \
     cd $ANDROID_SDK_ROOT && \
-    curl -o sdk-tools-linux.zip https://dl.google.com/android/repository/commandlinetools-linux-latest.zip && \
+    curl -o sdk-tools-linux.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}_latest.zip && \
     unzip -d cmdline-tools sdk-tools-linux.zip && \
     rm sdk-tools-linux.zip
 
