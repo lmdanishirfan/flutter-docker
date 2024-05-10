@@ -6,7 +6,7 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 # "11076708" as of 2024/03/04
-ENV ANDROID_SDK_TOOLS_VERSION="30.0"
+ENV ANDROID_SDK_TOOLS_VERSION=">=30.0.0"
 # Update package lists
 RUN apt-get update
 
