@@ -33,7 +33,7 @@ RUN mkdir -p $ANDROID_SDK_ROOT/cmdline-tools/latest && \
 
 
 # Print the contents of the bin directory
-RUN ls -l $ANDROID_SDK_ROOT
+RUN ls -l $ANDROID_SDK_ROOT/cmdline-tools/latest
 
 # Create necessary directory structure for the Android SDK
 RUN mkdir -p "$ANDROID_HOME" && \
