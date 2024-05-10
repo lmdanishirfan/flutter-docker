@@ -21,7 +21,7 @@ RUN git clone --depth 1 --branch 3.16.9 https://github.com/flutter/flutter.git /
 # Environment variable for flutter
 ENV PATH="$PATH:/opt/flutter/bin"
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
-ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 ENV PATH="$PATH:$ANDROID_SDK_ROOT/cmdline-tools/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools/bin"
 
 # Install Android SDK
