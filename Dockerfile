@@ -32,19 +32,22 @@ RUN mkdir -p $ANDROID_SDK_ROOT && \
     rm sdk-tools-linux.zip
 
 # Set permissions and ensure sdkmanager is executable
-RUN chmod +x $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools/bin/sdkmanager
+RUN chmod +x $ANDROID_SDK_ROOT/cmdline-tools/bin/sdkmanager
 
 # Accept Android SDK licenses
-RUN yes | $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools/bin/sdkmanager --licenses
+RUN yes | $ANDROID_SDK_ROOT/cmdline-tools/bin/sdkmanager --licenses
 
 # Print the contents of the bin directory
-RUN ls -l $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools/bin
+RUN ls -l $ANDROID_SDK_ROOT/cmdline-tools/bin
 
 # Install required Android SDK components
 RUN $ANDROID_SDK_ROOT/cmdline-tools/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
 
 
 RUN flutter doctor
+
+# Accept Android SDK licenses automatically
+RUN yes | flutter doctor --android-licenses
 
 # Working directory for your project
 WORKDIR /app
