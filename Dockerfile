@@ -51,17 +51,7 @@ RUN chmod +x $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager
 RUN yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
 
 # Install required Android SDK components
-RUN $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
-
-# Install Android NDK
-RUN wget --quiet --output-document=android-ndk.zip \
-        "https://dl.google.com/android/repository/android-ndk-${NDK_VERSION}-linux-x86_64.zip" && \
-    unzip -q android-ndk.zip -d /opt && \
-    rm -rf android-ndk.zip
-
-# Set environment variables for NDK
-ENV ANDROID_NDK_HOME=/opt/android-ndk-${NDK_VERSION}
-ENV PATH="$PATH:$ANDROID_NDK_HOME"
+RUN $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3" "ndk;${NDK_VERSION}"
 
 RUN flutter doctor
 
