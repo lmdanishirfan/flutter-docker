@@ -26,26 +26,23 @@ ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 ENV PATH="$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools/bin"
 
 # Install Android SDK
-RUN mkdir -p $ANDROID_SDK_ROOT && \
-    cd $ANDROID_SDK_ROOT && \
+RUN mkdir -p $ANDROID_SDK_ROOT/cmdline-tools/latest && \
+    cd $ANDROID_SDK_ROOT/cmdline-tools/latest && \
     curl -o sdk-tools-linux.zip "https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}_latest.zip" && \
-    unzip  sdk-tools-linux.zip && \
+    unzip sdk-tools-linux.zip && \
     rm sdk-tools-linux.zip
 
 
 # Print the contents of the bin directory
-RUN ls -l $ANDROID_SDK_ROOT/cmdline-tools/bin
+RUN ls -l $ANDROID_SDK_ROOT/cmdline-tools/latest/bin
 # Set permissions and ensure sdkmanager is executable
-RUN chmod +x $ANDROID_SDK_ROOT/cmdline-tools/bin/sdkmanager
+RUN chmod +x $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager
 
 # Accept Android SDK licenses
-RUN yes | /opt/android-sdk/cmdline-tools/bin/sdkmanager --sdk_root=/opt/android-sdk --licenses
-
-# Print the contents of the bin directory
-RUN ls -l $ANDROID_SDK_ROOT/cmdline-tools/bin
+RUN yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
 
 # Install required Android SDK components
-RUN $ANDROID_SDK_ROOT/cmdline-tools/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
+RUN $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
 
 
 RUN flutter doctor
