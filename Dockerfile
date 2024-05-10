@@ -1,11 +1,12 @@
-# "11076708" as of 2024/03/04
-ARG ANDROID_SDK_TOOLS_TAGGED="latest"
-ARG ANDROID_SDK_TOOLS_VERSION="11076708"
+
 
 # Base image with minimal dependencies
 FROM ubuntu:20.04
 # Set DEBIAN_FRONTEND to noninteractive to avoid interactive prompts during package installation
 ENV DEBIAN_FRONTEND=noninteractive
+
+# "11076708" as of 2024/03/04
+ENV ANDROID_SDK_TOOLS_VERSION="11076708"
 # Update package lists
 RUN apt-get update
 
