@@ -28,7 +28,7 @@ ENV PATH="$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/pla
 RUN mkdir -p $ANDROID_SDK_ROOT && \
     cd $ANDROID_SDK_ROOT && \
     curl -o sdk-tools-linux.zip "https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}_latest.zip" && \
-    unzip  sdk-tools-linux.zip -d cmdline-tools/latest/bin && \
+    unzip  sdk-tools-linux.zip -d cmdline-tools\latest\bin && \
     rm sdk-tools-linux.zip
 
 
