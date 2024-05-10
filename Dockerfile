@@ -39,7 +39,7 @@ RUN ls -l $ANDROID_SDK_ROOT/cmdline-tools/bin
 RUN chmod +x $ANDROID_SDK_ROOT/cmdline-tools/bin/sdkmanager
 
 # Accept Android SDK licenses
-RUN yes | $ANDROID_SDK_ROOT/cmdline-tools/bin/sdkmanager --licenses --sdk_root = $ANDROID_SDK_ROOT
+RUN yes | $ANDROID_SDK_ROOT/cmdline-tools/bin/sdkmanager --licenses
 
 # Print the contents of the bin directory
 RUN ls -l $ANDROID_SDK_ROOT/cmdline-tools/bin
