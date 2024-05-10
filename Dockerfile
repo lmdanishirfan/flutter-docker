@@ -29,11 +29,12 @@ ENV PATH="$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/pla
 RUN mkdir -p $ANDROID_SDK_ROOT/cmdline-tools/latest && \
     cd $ANDROID_SDK_ROOT/cmdline-tools/latest && \
     wget --quiet --output-document=sdk-tools.zip \
-        "https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}_latest.zip"
+        "https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}_latest.zip" && \
+        unzip -q sdk-tools.zip
 
 
 # Print the contents of the bin directory
-RUN ls -l $ANDROID_SDK_ROOT/cmdline-tools/latest
+RUN ls -l $ANDROID_SDK_ROOT/cmdline-tools/latest/bin
 
 # Create necessary directory structure for the Android SDK
 RUN mkdir -p "$ANDROID_HOME" && \
