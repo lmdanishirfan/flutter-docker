@@ -53,6 +53,16 @@ RUN yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
 RUN $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
 
 
+# Install Android Studio
+RUN wget --quiet --output-document=android-studio.tar.gz \
+        https://developer.android.com/studio/index.html && \
+    tar -xf android-studio.tar.gz -C /opt/ && \
+    rm android-studio.tar.gz
+
+# Add Android Studio binaries to PATH
+ENV PATH="$PATH:/opt/android-studio/bin"
+
+
 RUN flutter doctor
 
 # Accept Android SDK licenses automatically
