@@ -1,4 +1,4 @@
 A simple flutter linux docker image
 FLUTTER_VERSION = 3.16.9
 ANDROID_SDK_TOOLS_VERSION = 11076708
-NDK_VERSION = 26.2.11394342
+NDK_VERSION = latest
