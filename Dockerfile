@@ -15,8 +15,8 @@ RUN apt-get update
 RUN apt-get install -y curl git unzip zip openjdk-17-jdk wget
 
 # Define Flutter version and download URL (replace with desired version)
-ENV FLUTTER_VERSION=3.16.9
-RUN git clone --depth 1 --branch 3.16.9 https://github.com/flutter/flutter.git /opt/flutter && \
+ENV FLUTTER_VERSION=3.19.0
+RUN git clone --depth 1 --branch 3.19.0 https://github.com/flutter/flutter.git /opt/flutter && \
     echo "FLUTTER_VERSION=${FLUTTER_VERSION}"
 
 # Environment variable for flutter
