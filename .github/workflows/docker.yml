@@ -26,5 +26,7 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: lbdanish/flutter-linux:latest
+          tags: |
+            lbdanish/flutter-linux:latest
+            lbdanish/flutter-linux:3.19.0
 
